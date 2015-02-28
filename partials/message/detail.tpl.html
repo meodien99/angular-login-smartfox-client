@@ -1,0 +1,10 @@
+<div class="data">
+    <p><strong>Title :</strong> {{event.title}}</p><br/>
+    <p><strong>Content :</strong> {{event.content}}</p><br/>
+    <p><strong>Type :</strong> {{event.type === 0 ? 'Event' : 'Notify'}}</p><br/>
+    <p><strong>Status :</strong> {{event.is_active[0] === 1 ? 'Active' : 'Inactive'}}</p>
+    <p><strong>Create Date :</strong> {{event.created_date}}</p>
+
+    <hr/>
+    <a ui-sref="home.message">Back to Messages</a>
+</div>

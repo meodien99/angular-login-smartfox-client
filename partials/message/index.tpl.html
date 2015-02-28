@@ -1,0 +1,68 @@
+<div class="alert alert-danger" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+<ul>
+    <li><a ui-sref="home.message.create">Create</a></li>
+</ul>
+<hr/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Messages</strong>
+    </div>
+    <div class="panel-body">
+
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="filter"></label>Filter by :
+                <select id="filter" ng-model="q.type">
+                    <option ng-value="0" ng-selected="true" >Event</option>
+                    <option ng-value="1">Notify</option>
+                </select>
+            </div>
+            <div class="filter-right">
+                <label for="page"></label>Per Page :
+                <select id="page" ng-model="pageSizeEvent">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <table>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>{{t}}</th>
+                <th>Status</th>
+                <th>Created date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="event in events | filter:q | itemsPerPage: pageSizeEvent track by $index" current-page="currentPageEvent">
+                <td>{{$index+1}}</td>
+                <td>{{event.title}}</td>
+                <td>{{event.is_active[0]}}</td>
+                <td>{{event.created_date | date : "M/d/yy h:mm:s"}}</td>
+                <td>
+                    <a class="btn btn-success" ui-sref="home.message.detail({id:event.id})"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <a class="btn btn-success" ui-sref="home.message.update({id:event.id})"><i class="glyphicon glyphicon-adjust"></i></a>
+                    <a class="btn btn-danger" ng-click="delete(event.id)"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
