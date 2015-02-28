@@ -1,0 +1,57 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Users Online</strong>
+    </div>
+    <div class="panel-body">
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="filter"></label>Filter by :
+                <input type="search" id="filter" ng-model="q.USER_NAME" placeholder="Filter user by name"/>
+            </div>
+            <div class="filter-right">
+                <label for="page"></label>Per Page :
+                <select id="page" ng-model="pageSize">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <p>User online : {{userCount}}</p>
+        <hr/>
+        <table>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Time activated</th>
+                <!--<th>Action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="user in users | filter:q | itemsPerPage: pageSize track by $index" current-page="currentPage">
+                <td>{{$index+1}}</td>
+                <td>{{user.USER_NAME}}</td>
+                <td>{{user.IS_ONLINE}}</td>
+                <td>{{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>
+                <td>
+                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

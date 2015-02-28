@@ -1,0 +1,29 @@
+<div class="data">
+    <h4>Create Message</h4>
+    <hr/>
+    <form role="form" ng-submit="create()">
+        <div class="form-group">
+            <label for="title">Title :</label>
+            <input ng-model="event.title" ng-required="true" class="form-control" id="title" type="text"/>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content :</label>
+            <textarea ng-model="event.content" ng-required="true" class="form-control" id="content"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type :</label>
+            <div class="radio" id="type">
+                <div class="radio-inline" ng-init="event.type=0">
+                    <label><input  type="radio" ng-model="event.type" ng-value="0"> Event</label>
+                    <label><input type="radio" ng-model="event.type" ng-value="1"> Notify</label>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <input type="submit" class="btn btn-primary" value="Create"/>
+    </form>
+    <hr/>
+    <a ui-sref="home.message">Back to Messages</a>
+</div>

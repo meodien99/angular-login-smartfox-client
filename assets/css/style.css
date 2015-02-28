@@ -1,0 +1,39 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.2em 1.2em 1.2em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0 0 0 0 #000;
+    box-shadow:  0 0 0 0 #000;
+    float:left
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+
+.scheduler-border input {
+    float:left;
+    width: 100% !important;
+    margin : 10px 0;
+}
+.scheduler-border input[type=submit] {
+    margin-bottom: 15px
+}
+
+.scheduler-border .form-group {float:left;width:50%}
+.scheduler-border .time-filter {width:100%; box-sizing: border-box}
+.scheduler-border .time-filter input[type=text] {width: 45% !important;float:left;}
+.scheduler-border .time-filter strong {font-weight: bold;font-size: 1.2em}
+.scheduler-border .time-filter select {margin: 10px 0}
+.scheduler-border .form-group {width: 100%;}
