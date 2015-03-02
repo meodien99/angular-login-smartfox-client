@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('xMonitorApp')
-    .controller('HomeCtrl',['$rootScope','$scope','$state', 'AuthenFactory',
+    .controller('BaseCtrl',['$rootScope','$scope','$state', 'AuthenFactory',
         function($rootScope, $scope, $state, AuthenFactory){
 
             $scope.logout = function(){

@@ -20,13 +20,9 @@ angular.module('xMonitorApp',[
                 views: {
                     '' : {
                         templateUrl : 'partials/home.html',
-                        controller: 'HomeCtrl'
+                        controller: 'BaseCtrl'
                     },
-                    'test@home': {
-                        templateUrl: 'partials/statistics/user.sts.tpl.html',
-                        controller : 'StatCtrl'
-                    },
-                    'bang@home' : {
+                    'body@home': {
                         templateUrl : 'partials/charts.tpl.html',
                         controller : 'HomeCtrl'
                     }
@@ -38,7 +34,7 @@ angular.module('xMonitorApp',[
                     roles : ['Admin']
                 },
                 views : {
-                    'bang@home' : {
+                    'body@home' : {
                         templateUrl : 'partials/message/index.tpl.html',
                         resolve : {
                             messagesData : ['$timeout', 'MainFactory', function($timeout, MainFactory){
@@ -57,7 +53,7 @@ angular.module('xMonitorApp',[
                     roles : ['Admin']
                 },
                 views : {
-                    'bang@home' : {
+                    'body@home' : {
                         templateUrl : 'partials/message/create.tpl.html',
                         controller : ['$scope', '$state', 'MainFactory', function($scope, $state, MainFactory){
                             //create
@@ -84,7 +80,7 @@ angular.module('xMonitorApp',[
                     roles : ['Admin']
                 },
                 views : {
-                    'bang@home' : {
+                    'body@home' : {
                         templateUrl : 'partials/message/edit.tpl.html',
                         resolve : {
                             detailMessage : ['$stateParams', 'MainFactory', function($stateParams, MainFactory) {
@@ -125,7 +121,7 @@ angular.module('xMonitorApp',[
                     roles : ['Admin']
                 },
                 views : {
-                    'bang@home' : {
+                    'body@home' : {
                         templateUrl : 'partials/message/detail.tpl.html',
                         resolve : {
                             detailMessage : ['$stateParams', 'MainFactory', function($stateParams, MainFactory) {
@@ -150,7 +146,7 @@ angular.module('xMonitorApp',[
                     roles : ['Admin']
                 },
                 views : {
-                    'bang@home' : {
+                    'body@home' : {
                         templateUrl : 'partials/users.tpl.html',
                         resolve : {
                             usersData : ['MainFactory', function(MainFactory){

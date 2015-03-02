@@ -2,7 +2,7 @@
 
 angular.module('xMonitorApp')
     .factory('MainFactory', ['$http', '$q', function($http, $q){
-        var baseUrl = "http://192.168.1.72:3333";
+        var baseUrl = "http://localhost:3333";
 
         var messages = {
             allMessage : function(success, error){
