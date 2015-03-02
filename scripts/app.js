@@ -47,33 +47,6 @@ angular.module('xMonitorApp',[
                     }
                 }
             })
-            .state('home.message.create', {
-                url :'/create',
-                data : {
-                    roles : ['Admin']
-                },
-                views : {
-                    'body@home' : {
-                        templateUrl : 'partials/message/create.tpl.html',
-                        controller : ['$scope', '$state', 'MainFactory', function($scope, $state, MainFactory){
-                            //create
-                            $scope.create = function(){
-                                var data = $scope.event;
-                                console.log($scope.event.type);
-                                MainFactory.message.createMessage(data, function(res){
-                                    if(res.type == true){
-
-                                    }
-
-                                    $state.transitionTo('home.message', {}, {reload:true});
-                                }, function(err){
-                                    console.log(err);
-                                })
-                            }
-                        }]
-                    }
-                }
-            })
             .state('home.message.update', {
                 url :'/{id:[0-9]{1,8}}/edit',
                 data : {
@@ -156,6 +129,18 @@ angular.module('xMonitorApp',[
                             }]
                         },
                         controller : 'PayCtrl'
+                    }
+                }
+            })
+            .state('home.statistics', {
+                url :'/statistics',
+                data : {
+                    roles : ['Admin']
+                },
+                views : {
+                    'body@home' : {
+                        templateUrl : 'partials/statistics/statistics.tpl.html',
+                        controller : 'StatCtrl'
                     }
                 }
             })

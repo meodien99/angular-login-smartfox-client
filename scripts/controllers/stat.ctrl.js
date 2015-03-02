@@ -27,7 +27,7 @@ angular.module('xMonitorApp')
         };
 
         //init new user count
-        $scope.newUserUpdate();
+        //$scope.newUserUpdate();
 
         $scope.newUserFilter = function(){
             var params = {
@@ -81,7 +81,7 @@ angular.module('xMonitorApp')
         };
 
         //init played user count
-        $scope.playedUserUpdate();
+        //$scope.playedUserUpdate();
 
         /* ------- game statistics--------- */
         $scope.games = [];
@@ -121,7 +121,7 @@ angular.module('xMonitorApp')
         };
 
         //init played user count
-        $scope.gameUpdate();
+        //$scope.gameUpdate();
 
         /* ------- task statistics--------- */
         $scope.taskCount = 0;

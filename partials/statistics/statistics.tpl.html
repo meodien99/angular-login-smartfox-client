@@ -1,106 +1,81 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <strong>User Statistic</strong>
-    </div>
-    <div class="panel-body">
-        <p>In this demo you can see following actions;</p>
-        <div class="form-inline">
-            <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">New User</legend>
-                <form ng-submit="newUserFilter()">
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="newUser.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="newUser.to" ng-required="true" type="text" name="End Time" placeholder="End Time" />
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Query" />
-                    <div style="clear:both"></div>
-                </form>
-                <div class="time-filter">
-                    <div class="form-group">
-                        <input class="form-control " type="text" name="Start Time" placeholder="Number" ng-value="1" ng-model="newUser.amount"/>
-                        <strong> : </strong>
-                        <select ng-model="newUser.type" class="form-control" ng-change="newUserUpdate()" ng-init="newUser.type = 'day'">
-                            <option value="day">Days</option>
-                            <option value="week">Weeks</option>
-                            <option value="month">Month</option>
-                        </select>
-                    </div>
-                    <div style="clear:both"></div>
-                </div>
-                <hr/>
-                <h1>{{newUserCount}}</h1>
-            </fieldset>
+<div class="col-lg-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Played User Statistic</strong>
         </div>
-        <div class="form-inline">
-            <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">User Played</legend>
-                <form ng-submit="playedUserFilter()">
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="playedUser.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="playedUser.to" ng-required="true" type="text" name="End Time" placeholder="End Time" />
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Query"/>
-                </form>
-                <div style="clear:both"></div>
-                <div class="time-filter">
-                    <div class="form-group">
-                        <input class="form-control" ng-model="playedUser.amount" ng-value="1" type="text" name="Start Time" placeholder="Number" />
-                        <strong> : </strong>
-                        <select ng-model="playedUser.type" class="form-control" ng-change="playedUserUpdate()" ng-init="playedUser.type = 'day'">
-                            <option value="day">Days</option>
-                            <option value="week">Weeks</option>
-                            <option value="month">Month</option>
-                        </select>
-                    </div>
+        <div class="panel-body">
+            <div class="form-inline">
+                <fieldset class="col-lg-12 col-md-12 scheduler-border">
+                    <legend class="scheduler-border">User Played</legend>
+                    <form ng-submit="playedUserFilter()">
+                        <div class="form-group">
+                            <input class="form-control stat" ng-model="playedUser.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control stat" ng-model="playedUser.to" ng-required="true" type="text" name="End Time" placeholder="End Time" />
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Query"/>
+                    </form>
                     <div style="clear:both"></div>
-                </div>
-                <hr/>
-                <h1>{{userPlayedCount}}</h1>
-            </fieldset>
+                    <div class="time-filter">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="playedUser.amount" ng-value="1" type="text" name="Start Time" placeholder="Number" />
+                            <strong> : </strong>
+                            <select ng-model="playedUser.type" class="form-control" ng-change="playedUserUpdate()" ng-init="playedUser.type = 'day'">
+                                <option value="day">Days</option>
+                                <option value="week">Weeks</option>
+                                <option value="month">Month</option>
+                            </select>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                    <hr/>
+                    <h1>{{userPlayedCount}}</h1>
+                </fieldset>
+            </div>
         </div>
     </div>
 </div>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <strong>User Statistic</strong>
-    </div>
-    <div class="panel-body">
-        <p>In this demo you can see following actions;</p>
-        <div class="form-inline">
-            <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">New User</legend>
-                <form ng-submit="taskFilter()">
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="task.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
+<div class="col-lg-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>User Statistic</strong>
+        </div>
+        <div class="panel-body">
+            <p>In this demo you can see following actions;</p>
+            <div class="form-inline">
+                <fieldset class="col-lg-12 col-md-12 scheduler-border">
+                    <legend class="scheduler-border">New User</legend>
+                    <form ng-submit="taskFilter()">
+                        <div class="form-group">
+                            <input class="form-control stat" ng-model="task.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control stat" ng-model="task.to" ng-required="true" type="text" name="End Time" placeholder="End Time" />
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Query" />
+                        <div style="clear:both"></div>
+                    </form>
+                    <div class="time-filter">
+                        <div class="form-group">
+                            <input class="form-control " type="text" name="Start Time" placeholder="Number" ng-value="1" ng-model="newUser.amount"/>
+                            <strong> : </strong>
+                            <select ng-model="task.type" class="form-control" ng-change="newUserUpdate()" ng-init="newUser.type = 'day'">
+                                <option value="day">Days</option>
+                                <option value="week">Weeks</option>
+                                <option value="month">Month</option>
+                            </select>
+                        </div>
+                        <div style="clear:both"></div>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control stat" ng-model="task.to" ng-required="true" type="text" name="End Time" placeholder="End Time" />
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Query" />
-                    <div style="clear:both"></div>
-                </form>
-                <div class="time-filter">
-                    <div class="form-group">
-                        <input class="form-control " type="text" name="Start Time" placeholder="Number" ng-value="1" ng-model="newUser.amount"/>
-                        <strong> : </strong>
-                        <select ng-model="task.type" class="form-control" ng-change="newUserUpdate()" ng-init="newUser.type = 'day'">
-                            <option value="day">Days</option>
-                            <option value="week">Weeks</option>
-                            <option value="month">Month</option>
-                        </select>
-                    </div>
-                    <div style="clear:both"></div>
-                </div>
-                <hr/>
-                <h1>{{taskCount}}</h1>
-            </fieldset>
+                    <hr/>
+                    <h1>{{taskCount}}</h1>
+                </fieldset>
+            </div>
         </div>
     </div>
 </div>
+<div class="col-lg-12">
 <div class="panel panel-primary">
     <div class="panel-heading">
         <strong>Game Statistic</strong>
@@ -132,11 +107,12 @@
                     <div style="clear:both"></div>
                 </div>
                 <hr/>
-                    <ul id="double" ng-repeat="game in games">
-                        <li><strong>{{game.name}} : </strong> {{game.amount}}</li>
-                    </ul>
+                <ul id="double" ng-repeat="game in games">
+                    <li><strong>{{game.name}} : </strong> {{game.amount}}</li>
+                </ul>
             </fieldset>
         </div>
     </div>
+</div>
 </div>
 
