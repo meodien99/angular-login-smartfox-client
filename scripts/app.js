@@ -140,14 +140,14 @@ angular.module('xMonitorApp',[
                     }
                 }
             })
-            .state('home.users', {
-                url :'/users',
+            .state('home.payments', {
+                url :'/payments',
                 data : {
                     roles : ['Admin']
                 },
                 views : {
                     'body@home' : {
-                        templateUrl : 'partials/users.tpl.html',
+                        templateUrl : 'partials/payments.tpl.html',
                         resolve : {
                             usersData : ['MainFactory', function(MainFactory){
                                 return MainFactory.user.allUsers(function(error){
@@ -155,7 +155,7 @@ angular.module('xMonitorApp',[
                                 });
                             }]
                         },
-                        controller : 'UserCtrl'
+                        controller : 'PayCtrl'
                     }
                 }
             })

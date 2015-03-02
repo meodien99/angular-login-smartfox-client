@@ -1,1 +1,66 @@
-<p>where to show chart</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Users Online</strong>
+    </div>
+    <div class="panel-body">
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="filter"></label>Filter by :
+                <input type="search" id="filter" ng-model="q.USER_NAME" placeholder="Filter user by name"/>
+            </div>
+            <div class="filter-right">
+                <label for="page"></label>Per Page :
+                <select id="page" ng-model="pageSize">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <p>Total User online: {{userCount}}</p>
+        <p>Android: {{androidCCU}}</p>
+        <p>IOS: {{iosCCU}}</p>
+        <p>J2ME: {{j2meCCU}}</p>
+        <p>WinPhone: {{winPhoneCCU}}</p>
+        <p>Web: {{webCCU}}</p>
+        <p>Other Platform: {{otherPlatformCCU}}</p>
+        <hr/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th> No. </th>
+                <th><a href="" ng-click="predicate = 'USER_NAME'; reverse=!reverse"> Username </a></th>
+                <th><a href="" ng-click="predicate = 'client_type'; reverse=!reverse"> Platform </a></th>
+                <th><a href="" ng-click="predicate = 'registeredtime'; reverse=!reverse"> RegisteredTime</a> </th>
+                <th><a href="" ng-click="predicate = 'loginedFrom'; reverse=!reverse"> Time activated</a> </th>
+                <!--<th>Action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="user in users | filter:q |orderBy:predicate:reverse | itemsPerPage: pageSize track by $index" current-page="currentPage">
+                <td> {{$index+1}}</td>
+                <td> {{user.USER_NAME}}</td>
+                <td> {{user.client_type }}</td>
+                <!--<td> {{user.REGISTERED_DATE | date : "M/d/yy h:mm:s"}}</td>-->
+                <!--<td> {{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>-->
+                <td> {{user.registeredtime}} days ago </td>
+                <td> {{user.loginedFrom}}  minutes before</td>
+                <td>
+                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
