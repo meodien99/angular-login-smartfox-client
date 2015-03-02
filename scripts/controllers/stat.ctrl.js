@@ -125,18 +125,32 @@ angular.module('xMonitorApp')
 
         /* ------- task statistics--------- */
         $scope.taskCount = 0;
+        $scope.task = {
+            from : '2015-02-08',
+            to : '2015-02-09',
+            amount : 3,
+            type : "week"
+        };
+        $scope.tasks = [];
+        $scope.pageSize = 10;
 
         $scope.taskFilter = function(){
             var params = {
-                from : $scope.gameData.from,
-                to : $scope.gameData.to
+                from : $scope.task.from,
+                to : $scope.task.to
             };
+            $scope.taskCount = 0;
             MainFactory.statistic.task.taskByTime(params, function(err){
                 console.log(err);
             }).then(function(res){
-               if(res.type === true){
-                   //$scope.taskCount = res.data.
-               }
+                if(res.type === true){
+
+                    $scope.tasks = res.data;
+                    for(var i in res.data) {
+                        $scope.taskCount = $scope.taskCount + res.data[i].amount;
+                    }
+                }
             });
-        }
+        };
+        $scope.taskFilter();
     }]);
