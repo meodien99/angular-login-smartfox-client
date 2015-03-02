@@ -6,7 +6,7 @@
         <p>In this demo you can see following actions;</p>
         <div class="form-inline">
             <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">New User</legend>
+                <legend class="scheduler-border">Registed User</legend>
                 <form ng-submit="newUserFilter()">
                     <div class="form-group">
                         <input class="form-control stat" ng-model="newUser.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
@@ -35,7 +35,7 @@
         </div>
         <div class="form-inline">
             <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">User Played</legend>
+                <legend class="scheduler-border">Actived User</legend>
                 <form ng-submit="playedUserFilter()">
                     <div class="form-group">
                         <input class="form-control stat" ng-model="playedUser.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
@@ -66,13 +66,14 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <strong>User Statistic</strong>
+        <strong>Task Statistic</strong>
     </div>
     <div class="panel-body">
-        <p>In this demo you can see following actions;</p>
+        <!--<p>In this demo you can see following actions;</p>-->
         <div class="form-inline">
             <fieldset class="col-lg-6 col-md-6 scheduler-border">
-                <legend class="scheduler-border">New User</legend>
+                <legend class="scheduler-border">Task Static</legend>
+
                 <form ng-submit="taskFilter()">
                     <div class="form-group">
                         <input class="form-control stat" ng-model="task.from" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />
@@ -85,9 +86,9 @@
                 </form>
                 <div class="time-filter">
                     <div class="form-group">
-                        <input class="form-control " type="text" name="Start Time" placeholder="Number" ng-value="1" ng-model="newUser.amount"/>
+                        <input class="form-control " type="text" name="Start Time" placeholder="Number" ng-value="1" ng-model="task.amount"/>
                         <strong> : </strong>
-                        <select ng-model="task.type" class="form-control" ng-change="newUserUpdate()" ng-init="newUser.type = 'day'">
+                        <select ng-model="task.type" class="form-control" ng-change="taskFilter()" ng-init="task.type = 'day'">
                             <option value="day">Days</option>
                             <option value="week">Weeks</option>
                             <option value="month">Month</option>
@@ -96,10 +97,35 @@
                     <div style="clear:both"></div>
                 </div>
                 <hr/>
-                <h1>{{taskCount}}</h1>
+                <h3>Total tasks completed: {{taskCount}}</h3>
+                <h3>Task types: {{tasks.length}}</h3>
+            </fieldset>
+        </div>
+        <div class="form-inline">
+            <fieldset class="col-lg-6 col-md-6 scheduler-border">
+                <legend class="scheduler-border">Task Detail</legend>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th> No. </th>
+                        <th><a href="" ng-click="predicate = 'name'; reverse=!reverse"> Task Name</a> </th>
+                        <th><a href="" ng-click="predicate = 'amount'; reverse=!reverse"> Count </a> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr dir-paginate="task in tasks |orderBy:predicate:reverse | itemsPerPage: pageSize track by $index">
+                        <td> {{$index+1}}</td>
+                        <td> {{task.name}}</td>
+                        <td> {{task.amount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </fieldset>
         </div>
     </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Game Statistic</strong>
 </div>
 <div class="panel panel-primary">
     <div class="panel-heading">

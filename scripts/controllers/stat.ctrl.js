@@ -125,18 +125,68 @@ angular.module('xMonitorApp')
 
         /* ------- task statistics--------- */
         $scope.taskCount = 0;
+        $scope.task = {
+            from : '2015-02-08',
+            to : '2015-02-09',
+            amount : 3,
+            type : "week"
+        };
+        $scope.tasks = [];
+        $scope.pageSize = 10;
 
         $scope.taskFilter = function(){
             var params = {
-                from : $scope.gameData.from,
-                to : $scope.gameData.to
+                from : $scope.task.from,
+                to : $scope.task.to
             };
+            $scope.taskCount = 0;
             MainFactory.statistic.task.taskByTime(params, function(err){
                 console.log(err);
             }).then(function(res){
                if(res.type === true){
-                   //$scope.taskCount = res.data.
+
+                   $scope.tasks = res.data;
+                   for(var i in res.data) {
+                       $scope.taskCount = $scope.taskCount + res.data[i].amount;
+                   }
                }
             });
         }
+        $scope.taskFilter();
+
+
+
+        /*DATETIME PICKER-----------------------------------*/
+        $scope.today = function() {
+            $scope.dt = new Date();
+        };
+        $scope.today();
+
+        $scope.clear = function () {
+            $scope.dt = null;
+        };
+
+        // Disable weekend selection
+        $scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        };
+
+        $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+        };
+        $scope.toggleMin();
+
+        $scope.open = function($event) {
+            $event.preventDefault();
+            alert($event);
+            $event.stopPropagation();
+            $scope.opened = true;
+        };
+
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.format = 'dd-MM-yyyy';
     }]);
