@@ -1,5 +1,4 @@
 node_modules
-dist
 .c9
 .tmp
 .sass-cache
@@ -13,7 +12,6 @@ lib-cov
 *.pid
 *.gz
 *.idea
-*.idea/
 .idea/
 .bower-cache/*
 .bower-registry/*
