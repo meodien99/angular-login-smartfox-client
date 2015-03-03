@@ -1,1 +1,112 @@
-<p>PCI here</p>
+<div class="alert alert-danger" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Messages</strong>
+    </div>
+    <div class="panel-body">
+        <form role="form" ng-submit="create()">
+            <div class="form-group">
+                <label for="title">Name :</label>
+                <input ng-model="app.name" ng-required="true" class="form-control" id="title" type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description :</label>
+                <input ng-model="app.description" ng-required="true" type="text" class="form-control" id="description"/>
+            </div>
+            <div class="form-group">
+                <label for="offerid">Description :</label>
+                <input ng-model="app.offerID" ng-required="true" type="number" class="form-control" id="offerid"/>
+            </div>
+            <div class="form-group">
+                <label for="icon">Icon :</label>
+                <input  ng-model="app.icon" ng-required="true" type="file" class="form-control" id="icon"/>
+            </div>
+            <div class="form-group">
+                <label for="sDate">Start Date :</label>
+                <input ng-model="app.sDate" ng-required="true" type="date" class="form-control" id="sDate"/>
+            </div>
+            <div class="form-group">
+                <label for="eDate">End Date :</label>
+                <input ng-model="app.eDate" ng-required="true" type="date" class="form-control" id="eDate"/>
+            </div>
+            <div class="form-group">
+                <label for="platform">Platform :</label>
+                <select id="platform" ng-model="pageSizeEvent" ng-init="app.platform='IOS'">
+                    <option value="IOS" ng-selected="true" >IOS</option>
+                    <option value="Android">Android</option>
+                    <option value="WindowPhone">WindowPhone</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="Create"/>
+        </form>
+        <hr/>
+        <a ui-sref="home.pci.edit">Back to Messages</a>
+    </div>
+</div>
+<hr/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Messages</strong>
+    </div>
+    <div class="panel-body">
+
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="filter"></label>Filter by :
+                <select id="filter" ng-model="q.type">
+                    <option ng-value="0" ng-selected="true" >Event</option>
+                    <option ng-value="1">Notify</option>
+                </select>
+            </div>
+            <div class="filter-right">
+                <label for="page"></label>Per Page :
+                <select id="page" ng-model="pageSizeEvent">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <hr/>
+        <table>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>{{t}}</th>
+                <th>Status</th>
+                <th>Created date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="app in apps | filter:q | itemsPerPage: pageSizeEvent track by $index" current-page="currentPageEvent">
+                <td>{{$index+1}}</td>
+                <td>{{app.title}}</td>
+                <td>{{app.is_active[0]}}</td>
+                <td>{{app.created_date | date : "M/d/yy h:mm:s"}}</td>
+                <td>
+                    <a class="btn btn-success" ui-sref="home.message.detail({id:app.id})"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <a class="btn btn-success" ui-sref="home.message.update({id:app.id})"><i class="glyphicon glyphicon-adjust"></i></a>
+                    <a class="btn btn-danger" ng-click="delete(app.id)"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
