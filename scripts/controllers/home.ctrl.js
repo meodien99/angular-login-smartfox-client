@@ -18,21 +18,23 @@ angular.module('xMonitorApp')
             }).then(function(usersData){
                 if(usersData.type === true) {
                     for(var i in usersData.data){
-                        usersData.data[i].registeredtime =  Math.ceil((new Date() - new Date(usersData.data[i].REGISTERED_DATE)) / (1000 * 3600 * 24));
-                        usersData.data[i].loginedFrom =  Math.ceil((new Date() - new Date(usersData.data[i].last_login_time)) / (1000 * 60));
-                        usersData.data[i].client_type = usersData.data[i].current_xclient_type.split(":")[0];
-                        var platform = usersData.data[i].current_xclient_type.split(":")[0];
-                        if(platform===("Android")){
-                            $scope.androidCCU++;
-                        }
-                        if(platform===("IOS version")){
-                            $scope.iosCCU++;
-                        }
-                        if(platform===("J2ME")){
-                            $scope.j2meCCU++;
-                        }
-                        if(platform===("WINDOWS PHONE")){
-                            $scope.winPhoneCCU++;
+                        if(usersData.data[i].current_xclient_type != null) {
+                            usersData.data[i].registeredtime = Math.ceil((new Date() - new Date(usersData.data[i].REGISTERED_DATE)) / (1000 * 3600 * 24));
+                            usersData.data[i].loginedFrom = Math.ceil((new Date() - new Date(usersData.data[i].last_login_time)) / (1000 * 60));
+                            usersData.data[i].client_type = usersData.data[i].current_xclient_type.split(":")[0];
+                            var platform = usersData.data[i].current_xclient_type.split(":")[0];
+                            if (platform === ("Android")) {
+                                $scope.androidCCU++;
+                            }
+                            if (platform === ("IOS version")) {
+                                $scope.iosCCU++;
+                            }
+                            if (platform === ("J2ME")) {
+                                $scope.j2meCCU++;
+                            }
+                            if (platform === ("WINDOWS PHONE")) {
+                                $scope.winPhoneCCU++;
+                            }
                         }
 
                     }

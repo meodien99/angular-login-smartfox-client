@@ -7,7 +7,7 @@ angular.module('xMonitorApp')
         var messages = {
             allMessage : function(success, error){
                 var deferred = $q.defer();
-                $http.get(baseUrl + '/messages').success(function(res){
+                $http.get(baseUrl + '/messages',{cache: true}).success(function(res){
                     deferred.resolve(res);
                 }).error(error);
 
@@ -96,10 +96,38 @@ angular.module('xMonitorApp')
             }
         };
 
+        var pci = {
+            all : function(params, error){
+                var deferred = $q.defer();
+                $http.get(baseUrl + '/',{cache: true}).success(function(res){
+                    deferred.resolve(res);
+                }).error(error);
+
+                return deferred.promise;
+            },
+            one : function(params, error){
+                var deferred = $q.defer();
+                $http.get(baseUrl + '/messages',{cache: true}).success(function(res){
+                    deferred.resolve(res);
+                }).error(error);
+
+                return deferred.promise;
+            },
+            create : function(params, error){
+
+            },
+            update : function(params, error){
+
+            },
+            delete : function(params, error){
+
+            }
+        };
+
         var users = {
             allUsers : function(error){
                 var deferred = $q.defer();
-                $http.get(baseUrl + '/users').success(function(res){
+                $http.get(baseUrl + '/users',{cache: true}).success(function(res){
                     deferred.resolve(res);
                 }).error(error);
 

@@ -144,6 +144,55 @@ angular.module('xMonitorApp',[
                     }
                 }
             })
+            .state('home.pci', {
+                url :'/pci',
+                data : {
+                    roles : ['Admin']
+                },
+                views : {
+                    'body@home' : {
+                        templateUrl : 'partials/pci/index.tpl.html',
+                        controller : 'PCICtrl'
+                    }
+                }
+            })
+            .state('home.pci.edit', {
+                url :'/{id:[0-9]{1,8}}/edit',
+                data : {
+                    roles : ['Admin']
+                },
+                views : {
+                    'body@home' : {
+                        templateUrl : 'partials/pci/edit.tpl.html',
+                        controller : 'PCICtrl'
+                    }
+                }
+            })
+            .state('home.pci.detail', {
+                url :'/{id:[0-9]{1,8}}',
+                data : {
+                    roles : ['Admin']
+                },
+                views : {
+                    'body@home' : {
+                        templateUrl : 'partials/message/detail.tpl.html',
+                        resolve : {
+                            detailMessage : ['$stateParams', 'MainFactory', function($stateParams, MainFactory) {
+                                var id = $stateParams.id;
+                                return MainFactory.message.oneMessage(id , null,function(){
+                                    console.log("....");
+                                });
+                            }]
+                        },
+                        controller : ['$rootScope', '$scope', '$state', '$stateParams','detailMessage',
+                            function($rootScope, $scope, $state, $stateParams, detailMessage){
+                                if(detailMessage.type === true){
+                                    $scope.event = detailMessage.data[0];
+                                };
+                            }]
+                    }
+                }
+            })
             .state('/signin', {
                 url : '/signin',
                 templateUrl: 'partials/signin.html',
