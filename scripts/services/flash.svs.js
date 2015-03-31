@@ -1,21 +1,23 @@
-'use strict';
+(function(){
+    'use strict';
 
-angular.module('xMonitorApp')
-    .factory('Flash', ['$rootScope', function($rootScope){
-        var queue = [];
+    angular.module('xMonitorApp')
+        .factory('Flash', ['$rootScope', function($rootScope){
+            var queue = [];
 
-        var currentMessage = '';
+            var currentMessage = '';
 
-        $rootScope.$on('$routeChangeSuccess', function(){
-            currentMessage = queue.shift() || "";
-        });
+            $rootScope.$on('$routeChangeSuccess', function(){
+                currentMessage = queue.shift() || "";
+            });
 
-        return {
-            setMessage : function(message) {
-                queue.push(message);
-            },
-            getMessage : function(){
-                return currentMessage;
+            return {
+                setMessage : function(message) {
+                    queue.push(message);
+                },
+                getMessage : function(){
+                    return currentMessage;
+                }
             }
-        }
-    }]);
+        }]);
+})();

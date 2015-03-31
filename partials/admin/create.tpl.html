@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Create Admin User</strong>
+    </div>
+    <div class="panel-body">
+        <div class="data">
+            <form role="form" ng-submit="addAdmin()">
+                <div class="form-group">
+                    <label for="username">Username :</label>
+                    <input ng-model="admin.username" placeholder="Username" ng-required="true" class="form-control" id="username" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password :</label>
+                    <input ng-model="admin.password"  placeholder="Type your password here ..." ng-required="true" class="form-control" id="password" type="password"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Active :</label>
+                    <div class="radio" id="type">
+                        <div class="radio-inline" ng-init="admin.role_id=1">
+                            <label><input type="radio" ng-model="admin.role_id" ng-value="1"> Admin</label>
+                            <label><input type="radio" ng-model="admin.role_id" ng-value="2"> User Manager</label>
+                            <label><input type="radio" ng-model="admin.role_id" ng-value="3"> Payment Manager</label>
+                            <label><input type="radio" ng-model="admin.role_id" ng-value="4"> PCI Manager</label>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <input type="submit" class="btn btn-primary" value="Create"/>
+            </form>
+        </div>
+    </div>
+</div>

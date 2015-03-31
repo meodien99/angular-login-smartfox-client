@@ -1,40 +1,34 @@
-<div class="data">
-    <h4>Create {{test}}</h4>
-    <hr/>
-    <form role="form" ng-submit="update()">
-        <div class="form-group">
-            <label for="title">Title :</label>
-            <input ng-model="event.title" ng-required="true" class="form-control" id="title" type="text"/>
-        </div>
-
-        <div class="form-group">
-            <label for="content">Content :</label>
-            <textarea ng-model="event.content" ng-required="true" class="form-control" id="content"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="type">Type :</label>
-            <div class="radio" id="type">
-                <div class="radio-inline">
-                    <label><input  type="radio" ng-model="event.type" ng-value="0"> Event</label>
-                    <label><input  type="radio" ng-model="event.type" ng-value="1"> Notify</label>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Editing Message</strong>
+    </div>
+    <div class="panel-body">
+        <div class="data">
+            <h4>Editing</h4>
+            <hr/>
+            <form role="form" ng-submit="update()">
+                <div class="form-group">
+                    <label for="title">Title :</label>
+                    <input ng-model="event.title" ng-required="true" class="form-control" id="title" type="text"/>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="status">Type :</label>
-            <div class="radio" id="status">
-                <div class="radio-inline" >
-                    <label><input  type="radio" ng-model="event.is_active" ng-value="1"> Active</label>
-                    <label><input  type="radio" ng-model="event.is_active" ng-value="0"> InActive</label>
+                <div class="form-group">
+                    <label for="content">Content :</label>
+                    <textarea class="edit-text" ng-model="event.content" ng-required="true" class="form-control" id="content"></textarea>
                 </div>
-            </div>
-        </div>
-        <hr/>
-        <input type="submit" class="btn btn-primary" value="Update"/>
-    </form>
 
-    <hr/>
-    <a ui-sref="home.message">Back to Messages</a>
+                <div class="form-group">
+                    <label for="status">Type :</label>
+                    <div class="radio" id="status">
+                        <div class="radio-inline">
+                            <label><input  type="radio" ng-model="event.active" ng-value="1"> Active</label>
+                            <label><input  type="radio" ng-model="event.active" ng-value="0"> InActive</label>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <input type="submit" class="btn btn-primary" value="Update"/>
+            </form>
+        </div>
+    </div>
 </div>

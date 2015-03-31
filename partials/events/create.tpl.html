@@ -1,0 +1,54 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Create Event</strong>
+    </div>
+    <div class="panel-body">
+        <div class="data">
+            <form role="form" ng-submit="create()">
+                <div class="form-group">
+                    <label for="title">Title :</label>
+                    <input ng-model="event.title" ng-required="true" class="form-control" id="title" type="text"/>
+                </div>
+                <div class="form-group">
+                    <label for="title">Summary :</label>
+                    <input ng-model="event.summary" ng-required="true" class="form-control" id="summary" type="text"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content :</label>
+                    <textarea ng-model="event.content" ng-required="true" class="form-control" id="content"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image :</label>
+                    <div class="btn btn-primary" ng-required="true" ng-model="files" ng-file-select id="imageUrl" >Upload</div>
+                    <ul>
+                        <li ng-repeat="f in files">{{f.name}}</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Start Event:</label>
+                    <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="event.createdDate" show-meridian="showMeridian" date-format="yyyy/MM/dd" date-options="dateOptions"  readonly-time="false"></datetimepicker>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">End Event :</label>
+                    <!--<datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian"  date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>-->
+                    <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="event.endDate" show-meridian="showMeridian" date-format="yyyy/MM/dd" date-options="dateOptions"  readonly-time="false"></datetimepicker>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Active :</label>
+                    <div class="radio" id="type">
+                        <div class="radio-inline" ng-init="event.active=0">
+                            <label><input  type="radio" ng-model="event.active" ng-value="0"> False</label>
+                            <label><input type="radio" ng-model="event.active" ng-value="1"> True</label>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <input type="submit" class="btn btn-primary" value="Create"/>
+            </form>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 
 <body ng-app="xMonitorApp">
@@ -32,31 +32,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">X-Monitor</a>
+                <a class="navbar-brand" ui-sref="home">X-Monitor</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a ui-sref="home">Home</a></li>
                     <li><a ui-sref="home.message">Message</a></li>
+                    <li><a ui-sref="home.users">Users</a></li>
                     <li><a ui-sref="home.payments">Payments</a></li>
+                    <li><a ui-sref="home.events">Events</a></li>
                     <li><a ui-sref="home.statistics">Statistics</a></li>
                     <li><a ui-sref="home.pci">App PCI</a></li>
+                    <li><a ui-sref="home.admin">Admin</a></li>
                     <li><a ng-href="#" ng-click="logout()">Logout</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
-<div class="container" ui-view>
-{{test}}
+<!--<input type="text" date-time ng-model="test" required="true" view="hours" partial="true">-->
+
+<div class="container-fluid" ui-view>
 </div> <!-- /container -->
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="node_modules/angular/angular.min.js"></script>
+<!--<script src="node_modules/jquery/dist/jquery.min.js"></script>-->
+<!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<!--<script src="scripts/SFS2X_API_JS.js"></script>-->
+
+
+<!--<script src="node_modules/angular/angular.min.js"></script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script>-->
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+<!-- chart -->
+<script src="lib/chart/Chart.js"></script>
+<!--<script src="lib/angular-bootstrap.js"></script>-->
+<script src="lib/chart/angular-chart.js"></script>
+<!-- datepicker -->
+<script src="lib/datetimepicker/datetimepicker.js"></script>
+<!--<script src="lib/datepicker/datepicker.js"></script>
+<script src="lib/datepicker/datePickerUtils.js"></script>
+<script src="lib/datepicker/dateRanger.js"></script>
+<script src="lib/datepicker/input.js"></script>-->
+<!-- moment -->
+<script src="node_modules/angular-moment/node_modules/moment/moment.js"></script>
+<script src="node_modules/angular-moment/angular-moment.js"></script>
+
+
+<script src="node_modules/ng-file-upload/dist/angular-file-upload-shim.min.js"></script>
+<script src="node_modules/ng-file-upload/dist/angular-file-upload.min.js"></script>
 <script src="node_modules/ui-router/angular-ui-router.js"></script>
 <script src="lib/ngStorage.js"></script>
 <script src="lib/loading-bar/loading-bar.js"></script>
 <script src="scripts/app.js"></script>
+<script src="scripts/constant.conf.js"></script>
 <!-- Controllers -->
 <script src="scripts/controllers/login.ctrl.js"></script>
 <script src="scripts/controllers/base.ctrl.js"></script>
@@ -65,12 +94,20 @@
 <script src="scripts/controllers/message.ctrl.js"></script>
 <script src="scripts/controllers/stat.ctrl.js"></script>
 <script src="scripts/controllers/pci.ctrl.js"></script>
+<script src="scripts/controllers/event.ctrl.js"></script>
+<script src="scripts/controllers/chart.ctrl.js"></script>
+<script src="scripts/controllers/user.ctrl.js"></script>
+<script src="scripts/controllers/admin.ctrl.js"></script>
 <!-- Services -->
 <script src="scripts/services/authen.svs.js"></script>
 <script src="scripts/services/main.svs.js"></script>
 <script src="scripts/services/flash.svs.js"></script>
+<script src="scripts/services/UtilityFunctions.js"></script>
+<script src="scripts/services/SFS.svs.js"></script>
 <!-- Directives -->
 <script src="scripts/directives/_paginate.js"></script>
-
+<script src="scripts/directives/_confirmClick.js"></script>
+<!-- Filters -->
+<script src="scripts/filters/limitText.filter.js"></script>
 </body>
 </html>

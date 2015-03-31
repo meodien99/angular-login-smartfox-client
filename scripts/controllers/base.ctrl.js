@@ -1,12 +1,17 @@
-'use strict';
+(function(){
+    'use strict';
 
-angular.module('xMonitorApp')
-    .controller('BaseCtrl',['$rootScope','$scope','$state', 'AuthenFactory',
-        function($rootScope, $scope, $state, AuthenFactory){
+    angular.module('xMonitorApp')
+        .controller('BaseCtrl',['$rootScope','$scope','$state', 'AuthenFactory', '$log',
+            function($rootScope, $scope, $state, AuthenFactory, $log){
 
-            $scope.logout = function(){
-                AuthenFactory.logout(function(){
-                    $state.go('/signin');
-                })
-            }
-        }]);
+
+                $scope.logout = function(){
+                    AuthenFactory.logout(function(){
+                        $state.go('/signin');
+                    })
+                };
+
+            }]);
+})();
+

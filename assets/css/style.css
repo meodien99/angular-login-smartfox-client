@@ -4,6 +4,13 @@ body {
     background-color: #eee;
 }
 
+.success {
+    color: #449D44;
+}
+.danger {
+    color : #C9302C;
+}
+
 fieldset.scheduler-border {
     border: 1px groove #ddd !important;
     padding: 0 1.2em 1.2em 1.2em !important;
@@ -31,9 +38,58 @@ legend.scheduler-border {
     margin-bottom: 15px
 }
 
+.result ul{
+    width:100%;
+    margin-bottom:40px;
+
+}
+.result li{
+    line-height:1.5em;
+    padding: 5px 0;
+    float:left;
+    display:inline;
+}
+#double li  { width:50%;}
+
 .scheduler-border .form-group {float:left;width:50%}
 .scheduler-border .time-filter {width:100%; box-sizing: border-box}
 .scheduler-border .time-filter input[type=text] {width: 45% !important;float:left;}
 .scheduler-border .time-filter strong {font-weight: bold;font-size: 1.2em}
 .scheduler-border .time-filter select {margin: 10px 0}
 .scheduler-border .form-group {width: 100%;}
+
+.time-filter {width: 100%; float:left; padding-bottom: 15px }
+.time-filter > input {display: block; width:11%;float:left;margin:10px}
+.time-filter > input:last-child {margin:10px 30px 10px 10px;}
+.time-filter > button {display: block; float:left; width:11%; margin:10px;padding:7px}
+.time-filter .input-group {width:30%;float:left; margin: 0 15px}
+.time-filter > select {margin: 10px;height:34px}
+.time-filter form input[type=submit] {width:25%}
+.time-filter form {float:left;width: 35%; padding: 10px}
+.filter-container {font-size:1em;box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+.filter-container .filter-left {width:50%;float:left;}
+.filter-container .filter-left input {width: 55%}
+.filter-container .filter-right {width: 50%; float:left;padding:2px}
+.filter-container .filter-right * {float:right}
+.filter-container .filter-right select {width: 15%}
+
+textarea.edit-text {width: 100%; min-height: 200px;background-color: #fff;border: 1px solid #CCCCCC;border-radius:4px; -moz-border-radius:4px;-webkit-border-radius:4px;padding: 5px 9px}
+table .icon {width:50px; height:50px}
+
+/*date time picker*/
+.datetimepicker-wrapper {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.datetimepicker-wrapper > input {
+    margin-bottom: 0 !important;
+    width: 130px;
+}
+
+.datetimepicker-wrapper [ng-model=hours], [ng-model=minutes] {
+    width: 46px !important;
+}
+.form-group .full { width:100%; float:left}
+.form-group .full button {margin:10px;right:-60%}
+.form-group .full .full-stat {display: block; width: 115% !important;}

@@ -1,12 +1,125 @@
+
+<!--<div class="panel panel-primary">-->
+    <!--<div class="panel-heading">-->
+        <!--<strong>Ngân Hàng</strong>-->
+    <!--</div>-->
+    <!--<div class="panel-body">-->
+        <!--<div class="time-filter">-->
+            <!--<form ng-submit="bankByTime()">-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control stat" ng-model="bankFrom" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />-->
+                    <!--<input class="form-control stat" ng-model="bankTo" ng-required="true" type="text" name="End Time" placeholder="End Time" />-->
+                    <!--<input type="submit" class="btn btn-primary" value="Query"/>-->
+                <!--</div>-->
+            <!--</form>-->
+            <!--<button type="button" class="btn btn-sm btn-info" ng-click="bankToday()">Today</button>-->
+            <!--<button type="button" class="btn btn-sm btn-default" ng-click="bankThisMonth()">This Month</button>-->
+            <!--<button type="button" class="btn btn-sm btn-danger" ng-click="bankThisYear()">This Year</button>-->
+        <!--</div>-->
+
+        <!--<hr/>-->
+        <!--<div class="filter-container">-->
+            <!--<div class="filter-left">-->
+                <!--<label for="bankFilter">Filter:</label><input id ="bankFilter" ng-model="bankFilter">-->
+            <!--</div>-->
+            <!--<div class="filter-right">-->
+                <!--<select id="bankPage" ng-model="bankPageSize">-->
+                    <!--<option ng-value="10" ng-selected="true" >10</option>-->
+                    <!--<option ng-value="20">20</option>-->
+                    <!--<option ng-value="30">30</option>-->
+                    <!--<option ng-value="40">40</option>-->
+                    <!--<option ng-value="50">50</option>-->
+                    <!--<option ng-value="100">100</option>-->
+                <!--</select>-->
+                <!--<label for="page">Per Page :</label>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="result">-->
+            <!--<ul id="bankdouble">-->
+                <!--<li>Total: <strong>{{totalBank | currency }} Số lần nạp:{{banks.length}}</strong></li>-->
+                <!--<li>Android: <strong>{{bankAndroid | currency }}</strong></li>-->
+                <!--<li>J2ME: <strong>{{bankJ2ME | currency }}</strong></li>-->
+                <!--<li>IOS: <strong>{{bankIOS | currency }}</strong></li>-->
+                <!--<li>WINPHONE: <strong>{{bankWINPHONE | currency }}</strong></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        <!--<table class="table table-bordered">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>No.</th>-->
+                <!--<th> <a href="" ng-click="predicate = 'USER_NAME'; reverse=!reverse"> Username </a> </th>-->
+                <!--<th> <a href="" ng-click="predicate = 'current_xclient_type'; reverse=!reverse"> Platform </a> </th>-->
+                <!--<th> <a href="" ng-click="predicate = 'MONEY'; reverse=!reverse"> MONEY </a> </th>-->
+                <!--<th> <a href="" ng-click="predicate = 'xgold'; reverse=!reverse"> xgold </a> </th>-->
+                <!--<th> <a href="" ng-click="predicate = 'DATE_TIME'; reverse=!reverse"> TIME </a> </th>-->
+                <!--&lt;!&ndash;<th>Action</th>&ndash;&gt;-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr dir-paginate="bank in banks |orderBy:predicate:reverse| filter:bankFilter | itemsPerPage: bankPageSize track by $index" current-page="bankCurrentPage">-->
+                <!--<td> {{($index+1) + ((bankCurrentPage-1)*bankPageSize)}} </td>-->
+                <!--<td>{{bank.USER_NAME}}</td>-->
+                <!--<td>{{bank.current_xclient_type}}</td>-->
+                <!--&lt;!&ndash;<td>{{card.SERIAL}}</td>&ndash;&gt;-->
+                <!--&lt;!&ndash;<td>{{card.CODE}}</td>&ndash;&gt;-->
+                <!--<td>{{bank.TELCO_ID}}</td>-->
+                <!--<td>{{bank.MONEY}}</td>-->
+                <!--<td>{{bank.BALANCE}}</td>-->
+                <!--<td>{{bank.xgold}}</td>-->
+                <!--<td>{{bank.DATE_TIME | date : "yyyy/MM/dd HH:mm:ss"}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--<tfoot>-->
+            <!--<tr>-->
+                <!--<td colspan="4">-->
+                    <!--<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tfoot>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
+
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <strong>Payment</strong>
+        <strong>Thẻ cào</strong>
     </div>
     <div class="panel-body">
+        <div class="time-filter">
+            <form ng-submit="cardByTime()">
+                <div class="form-group">
+                    <p class="input-group">
+                        <input type="text" id="cardFrom" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="cardFrom" is-open="opened1" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened1')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <p class="input-group">
+                        <input type="text" id="cardTo" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="cardTo" is-open="opened2" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened2')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Query"/>
+                </div>
+            </form>
+            <button type="button" class="btn btn-sm btn-info" ng-click="cardToday()">Today</button>
+            <button type="button" class="btn btn-sm btn-default" ng-click="cardThisMonth()">This Month</button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="cardThisYear()">This Year</button>
+        </div>
+
+        <hr/>
         <div class="filter-container">
+            <div class="filter-left">
+                <label for="cardFilter">Filter:</label><input id = "cardFilter" ng-model="cardFilter">
+            </div>
             <div class="filter-right">
-                <label for="page"></label>Per Page :
-                <select id="page" ng-model="pageSize">
+                <select id="cardPage" ng-model="cardPageSize">
                     <option ng-value="10" ng-selected="true" >10</option>
                     <option ng-value="20">20</option>
                     <option ng-value="30">30</option>
@@ -14,78 +127,55 @@
                     <option ng-value="50">50</option>
                     <option ng-value="100">100</option>
                 </select>
+                <label for="page">Per Page :</label>
             </div>
         </div>
-        <hr/>
-        <table>
+        <div class="result">
+            <hr/>
+            <ul id="carddouble">
+                <li> Total: <strong>{{totalCard | currency }} Số lần nạp:{{cards.length}}</strong></li>
+                <li> Android: <strong>{{totalAndroid | currency }}</strong></li>
+                <li> J2ME: <strong>{{totalJ2ME | currency }}</strong></li>
+                <li> IOS: <strong>{{totalIOS | currency }}</strong></li>
+                <li> WINPHONE: <strong>{{totalWINPHONE | currency }}</strong></li>
+
+            </ul>
+            <hr/>
+            <ul id="cardTelcodouble">
+                <li> Viettel: <strong>{{totalViettel | currency }}</strong></li>
+                <li> MobiPhone: <strong>{{totalMobi | currency }}</strong></li>
+                <li> VinaPhone: <strong>{{totalVina | currency }}</strong></li>
+            </ul>
+        </div>
+
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>No.</th>
-                <th>Username</th>
-                <th>Status</th>
-                <th>Time activated</th>
+                <th> <a href="" ng-click="predicate = 'USER_NAME'; reverse=!reverse"> Username </a> </th>
+                <th> <a href="" ng-click="predicate = 'current_xclient_type'; reverse=!reverse"> Platform </a> </th>
+                <!--<th> <a href="" ng-click="predicate = 'Serial'; reverse=!reverse"> Serial </a> </th>-->
+                <!--<th> <a href="" ng-click="predicate = 'Code'; reverse=!reverse"> Code </a> </th>-->
+                <th> <a href="" ng-click="predicate = 'TELCO_ID'; reverse=!reverse"> TELCO_ID </a> </th>
+                <th> <a href="" ng-click="predicate = 'MONEY'; reverse=!reverse"> MONEY </a> </th>
+                <th> <a href="" ng-click="predicate = 'BALANCE'; reverse=!reverse"> XCOIN </a> </th>
+                <th> <a href="" ng-click="predicate = 'xgold'; reverse=!reverse"> xgold </a> </th>
+                <th> <a href="" ng-click="predicate = 'DATE_TIME'; reverse=!reverse"> TIME </a> </th>
                 <!--<th>Action</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="user in users | filter:q | itemsPerPage: pageSize track by $index" current-page="currentPage">
-                <td>{{$index+1}}</td>
-                <td>{{user.USER_NAME}}</td>
-                <td>{{user.IS_ONLINE}}</td>
-                <td>{{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>
-                <td>
-                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="4">
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <strong>Payment</strong>
-    </div>
-    <div class="panel-body">
-        <div class="filter-container">
-            <div class="filter-right">
-                <label for="page"></label>Per Page :
-                <select id="page" ng-model="pageSize">
-                    <option ng-value="10" ng-selected="true" >10</option>
-                    <option ng-value="20">20</option>
-                    <option ng-value="30">30</option>
-                    <option ng-value="40">40</option>
-                    <option ng-value="50">50</option>
-                    <option ng-value="100">100</option>
-                </select>
-            </div>
-        </div>
-        <hr/>
-        <table>
-            <thead>
-            <tr>
-                <th>No.</th>
-                <th>Username</th>
-                <th>Status</th>
-                <th>Time activated</th>
-                <!--<th>Action</th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <tr dir-paginate="user in users | filter:q | itemsPerPage: pageSize track by $index" current-page="currentPage">
-                <td>{{$index+1}}</td>
-                <td>{{user.USER_NAME}}</td>
-                <td>{{user.IS_ONLINE}}</td>
-                <td>{{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>
-                <td>
-                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
-                </td>
+            <tr dir-paginate="card in cards |orderBy:predicate:reverse| filter:cardFilter | itemsPerPage: cardPageSize track by $index" current-page="cardCurrentPage">
+                <td> {{($index+1) + ((cardCurrentPage-1)*cardPageSize)}} </td>
+                <td>{{card.USER_NAME}}</td>
+                <td>{{card.current_xclient_type}}</td>
+                <!--<td>{{card.SERIAL}}</td>-->
+                <!--<td>{{card.CODE}}</td>-->
+                <td>{{card.TELCO}}</td>
+                <td>{{card.MONEY}}</td>
+                <td>{{card.BALANCE}}</td>
+                <td>{{card.xgold}}</td>
+                <td>{{card.DATE_TIME | date : "yyyy/MM/dd HH:mm:ss"}}</td>
             </tr>
             </tbody>
             <tfoot>
@@ -101,13 +191,42 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <strong>Payment</strong>
+        <strong>Tin Nhắn</strong>
     </div>
     <div class="panel-body">
+        <div class="time-filter">
+            <form ng-submit="smsByTime()">
+                <div class="form-group">
+                    <p class="input-group">
+                        <input type="text" id="smsFrom" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="smsFrom" is-open="opened3" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened3')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <p class="input-group">
+                        <input type="text" id="smsTo" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="smsTo" is-open="opened4" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened4')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Query"/>
+                </div>
+            </form>
+            <button type="button" class="btn btn-sm btn-info" ng-click="smsToday()">Today</button>
+            <button type="button" class="btn btn-sm btn-default" ng-click="smsThisMonth()">This Month</button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="smsThisYear()">This Year</button>
+        </div>
+        <hr/>
         <div class="filter-container">
+            <div class="filter-left">
+                <label for="smsFilter">Filter:</label><input id = "smsFilter" ng-model="smsFilter">
+            </div>
             <div class="filter-right">
-                <label for="page"></label>Per Page :
-                <select id="page" ng-model="pageSize">
+                <select id="smsPage" ng-model="smsPageSize">
                     <option ng-value="10" ng-selected="true" >10</option>
                     <option ng-value="20">20</option>
                     <option ng-value="30">30</option>
@@ -115,28 +234,127 @@
                     <option ng-value="50">50</option>
                     <option ng-value="100">100</option>
                 </select>
+                <label for="page">Per Page :</label>
             </div>
         </div>
-        <hr/>
-        <table>
+        <div class="result">
+            <ul id="smsdouble">
+                <li>Total: <strong>{{totalSms | currency }}</strong></li>
+                <li>Size: <strong>{{smses.length}}</strong></li>
+            </ul>
+        </div>
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>No.</th>
-                <th>Username</th>
-                <th>Status</th>
-                <th>Time activated</th>
+                <th> <a href="" ng-click="predicate = 'SENDER'; reverse=!reverse"> SENDER </a> </th>
+                <th> <a href="" ng-click="predicate = 'SMS_BODY'; reverse=!reverse"> SMS </a> </th>
+                <th> <a href="" ng-click="predicate = 'created_datetime'; reverse=!reverse"> TIME </a> </th>
+                <th> <a href="" ng-click="predicate = 'money'; reverse=!reverse"> MONEY </a> </th>
+                <th> <a href="" ng-click="predicate = 'returned_msg'; reverse=!reverse"> Message </a> </th>
                 <!--<th>Action</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="user in users | filter:q | itemsPerPage: pageSize track by $index" current-page="currentPage">
-                <td>{{$index+1}}</td>
-                <td>{{user.USER_NAME}}</td>
-                <td>{{user.IS_ONLINE}}</td>
-                <td>{{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>
-                <td>
-                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
+            <tr dir-paginate="sms in smses |orderBy:predicate:reverse| filter:smsFilter | itemsPerPage: smsPageSize track by $index" current-page="smsCurrentPage">
+                <td> {{($index+1) + ((smsCurrentPage-1)*smsPageSize)}} </td>
+                <td> {{sms.SENDER}} </td>
+                <td> {{sms.SMS_BODY}} </td>
+                <td> {{sms.created_datetime | date : "yyyy/MM/dd HH:mm:ss"}} </td>
+                <td> {{sms.money}} </td>
+                <td> {{sms.returned_msg}} </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
                 </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Chuyển Tiền</strong>
+    </div>
+    <div class="panel-body">
+        <div class="time-filter">
+            <form ng-submit="bankTransferByTime()">
+                <div class="form-group">
+                    <p class="input-group">
+                        <input type="text" id="bankTransferFrom" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="bankTransferFrom" is-open="opened5" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened5')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <p class="input-group">
+                        <input type="text" id="bankTransferTo" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="bankTransferTo" is-open="opened6" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened6')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Query"/>
+                </div>
+            </form>
+            <button type="button" class="btn btn-sm btn-info" ng-click="bankTransferToday()">Today</button>
+            <button type="button" class="btn btn-sm btn-default" ng-click="bankTransferThisMonth()">This Month</button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="bankTransferThisYear()">This Year</button>
+        </div>
+
+        <hr/>
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="bankTransferFilter">Filter:</label><input id = "bankTransferFilter" ng-model="bankTransferFilter">
+            </div>
+            <div class="filter-right">
+                <select id="page" ng-model="smsPageSize">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+                <label for="page">Per Page :</label>
+            </div>
+        </div>
+        <div class="result">
+            <ul id="bankTransferdouble">
+                <li>Total X-COIN: <strong>{{totalBankTransferCoin | currency }}</strong></li>
+                <li>Total X-GOLD: <strong>{{totalBankTransferGold | currency }}</strong></li>
+                <li>Size: <strong>{{bankTransfers.length}}</strong></li>
+            </ul>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th> <a href="" ng-click="predicate = 'name1'; reverse=!reverse"> Người gửi </a> </th>
+                <th> <a href="" ng-click="predicate = 'name2'; reverse=!reverse"> Người nhận </a> </th>
+                <th> <a href="" ng-click="predicate = 'transfer_time'; reverse=!reverse"> TIME </a> </th>
+                <th> <a href="" ng-click="predicate = 'xcoin'; reverse=!reverse"> X-Coin </a> </th>
+                <th> <a href="" ng-click="predicate = 'xgold'; reverse=!reverse"> X-Gold </a> </th>
+                <th> <a href="" ng-click="predicate = 'reason'; reverse=!reverse"> Message </a> </th>
+                <!--<th>Action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="bankTransfer in bankTransfers |orderBy:predicate:reverse| filter:bankTransferFilter | itemsPerPage: bankTransferPageSize track by $index" current-page="bankTransferCurrentPage">
+                <td> {{($index+1) + ((bankTransferCurrentPage-1)*bankTransferPageSize)}} </td>
+                <td> {{bankTransfer.name1}} </td>
+                <td> {{bankTransfer.name2}} </td>
+                <td> {{bankTransfer.transfer_time | date : "yyyy/MM/dd HH:mm:ss"}} </td>
+                <td> {{bankTransfer.xcoin}} </td>
+                <td> {{bankTransfer.xgold}} </td>
+                <td> {{bankTransfer.reason}} </td>
             </tr>
             </tbody>
             <tfoot>

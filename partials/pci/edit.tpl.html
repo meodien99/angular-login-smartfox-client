@@ -1,8 +1,10 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <strong>Messages</strong>
+        <strong>Update App</strong>
     </div>
     <div class="panel-body">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+
         <form role="form" ng-submit="update()">
             <div class="form-group">
                 <label for="title">Name :</label>
@@ -14,20 +16,34 @@
                 <input ng-model="app.description" ng-required="true" type="text" class="form-control" id="description"/>
             </div>
             <div class="form-group">
-                <label for="offerid">Description :</label>
-                <input ng-model="app.offerID" ng-required="true" type="number" class="form-control" id="offerid"/>
+                <label for="offerID">OfferID :</label>
+                <input ng-model="app.offerID" ng-required="true" type="text" class="form-control" id="offerID"/>
             </div>
             <div class="form-group">
+                <label for="coins">Coins :</label>
+                <input ng-model="app.coins" ng-required="true" type="number" class="form-control" id="coins"/>
+            </div>
+            <div class="form-group">
+                <label for="gems">Gems :</label>
+                <input ng-model="app.gems" ng-required="true" type="number" class="form-control" id="gems"/>
+            </div>
+            <div class="form-group">
+
                 <label for="icon">Icon :</label>
-                <input  ng-model="app.icon" ng-required="true" type="file" class="form-control" id="icon"/>
+                <img ng-src="{{ app.link === true && app.icon || base + app.icon}}" alt="" class="icon"/>
+                <span class="helper">Or upload new image...</span>
+                <div class="btn btn-primary" ng-model="files" ng-file-select id="icon" >Upload</div>
+                <ul>
+                    <li ng-repeat="f in files">{{f.name}}</li>
+                </ul>
             </div>
             <div class="form-group">
                 <label for="sDate">Start Date :</label>
-                <input ng-model="app.sDate" ng-required="true" type="date" class="form-control" id="sDate"/>
+                <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" id="sDate" minute-step="minuteStep" ng-model="app.sDate" show-meridian="showMeridian" date-format="yyyy/MM/dd" date-options="dateOptions"  readonly-time="false"></datetimepicker>
             </div>
             <div class="form-group">
                 <label for="eDate">End Date :</label>
-                <input ng-model="app.eDate" ng-required="true" type="date" class="form-control" id="eDate"/>
+                <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" id="eDate" minute-step="minuteStep" ng-model="app.eDate" show-meridian="showMeridian" date-format="yyyy/MM/dd" date-options="dateOptions"  readonly-time="false"></datetimepicker>
             </div>
             <div class="form-group">
                 <label for="platform">Platform :</label>
@@ -39,9 +55,8 @@
                 </select>
             </div>
             <hr/>
-            <input type="submit" class="btn btn-primary" value="Create"/>
+            <input type="submit" class="btn btn-primary" value="Update"/>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </form>
-        <hr/>
-        <a ui-sref="home.pci.edit">Back to Messages</a>
     </div>
 </div>

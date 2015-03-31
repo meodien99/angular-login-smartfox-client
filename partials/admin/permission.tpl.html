@@ -1,0 +1,27 @@
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Change permission</strong>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="changePermission()">
+                <div class="form-group">
+                    <h3>Change Permission:  <strong>{{user.username}}</strong> </h3>
+                </div>
+                <div class="form-group">
+                    <label for="roles">Select User Role : </label>
+                    <div class="radio" id="roles">
+                        <div class="radio-inline">
+                            <label><input type="radio" ng-model="user.role_id" ng-value="1"> Admin</label>
+                            <label><input type="radio" ng-model="user.role_id" ng-value="2"> User Manager</label>
+                            <label><input type="radio" ng-model="user.role_id" ng-value="3"> Payment Manager</label>
+                            <label><input type="radio" ng-model="user.role_id" ng-value="4"> PCI Manager</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="Change" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,54 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Chart</strong>
+    </div>
+    <div class="panel-body">
+        <div class="time-filter">
+            <form ng-submit="getCCUByTime()">
+                <div class="form-group">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="ccuFrom" is-open="opened1" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened1')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="ccuTo" is-open="opened2" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened2')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <!--<input class="form-control stat"  ng-model="" ng-required="true" type="text" name="Start Time" placeholder="Start Time" />-->
+                    <!--<input class="form-control stat" ng-model="ccuTo" ng-required="true" type="text" name="End Time" placeholder="End Time" />-->
+                    <input type="submit" class="btn btn-primary stat" value="Query"/>
+                </div>
+            </form>
+            <button type="button" class="btn btn-sm btn-info stat" ng-click="getCCUToday()">Today</button>
+            <button type="button" class="btn btn-sm btn-default stat" ng-click="getCCU24hAgo()">24h</button>
+            <button type="button" class="btn btn btn-primary stat" ng-click="getCCU48hAgo()">48h</button>
+            <button type="button" class="btn btn-sm btn-danger stat" ng-click="getCCU72hAgo()">72h</button>
+            <select  id="selectedTime"  ng-model="ccuSplit" ng-change="changeCCUSplit(ccuSplit)">
+                <option value="1" >10 Phút</option>
+                <option value="2">20 Phút</option>
+                <option value="3">30 Phút</option>
+                <option value="6" ng-selected="true" >1 Giờ</option>
+                <option value="12">2 Giờ</option>
+                <option value="36">6 Giờ</option>
+                <option value="144">24 Giờ</option>
+            </select>
+        </div>
+        <div class="col-lg-12">
+            <canvas id="line" class="chart chart-line" data="data" labels="labels"
+                    series="series" click="onClick"></canvas>
+        </div>
+    </div>
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <strong>Users Online</strong>
@@ -5,11 +56,11 @@
     <div class="panel-body">
         <div class="filter-container">
             <div class="filter-left">
-                <label for="filter"></label>Filter by :
-                <input type="search" id="filter" ng-model="q.USER_NAME" placeholder="Filter user by name"/>
+                <label for="filter">Filter by :</label>
+                <input type="search" id="filter" ng-model="q" placeholder="Filter user by name"/>
             </div>
             <div class="filter-right">
-                <label for="page"></label>Per Page :
+
                 <select id="page" ng-model="pageSize">
                     <option ng-value="10" ng-selected="true" >10</option>
                     <option ng-value="20">20</option>
@@ -18,18 +69,28 @@
                     <option ng-value="50">50</option>
                     <option ng-value="100">100</option>
                 </select>
+                <label for="page">Per Page :</label>
             </div>
+            <button type="button" class="btn btn-sm btn-info" ng-click="getOnlineUsers()">Refresh</button>
+            <div style="clear:both"></div>
         </div>
         <hr/>
-        <p>Total User online: {{userCount}}</p>
-        <p>Android: {{androidCCU}}</p>
-        <p>IOS: {{iosCCU}}</p>
-        <p>J2ME: {{j2meCCU}}</p>
-        <p>WinPhone: {{winPhoneCCU}}</p>
-        <p>Web: {{webCCU}}</p>
-        <p>Other Platform: {{otherPlatformCCU}}</p>
+        <div class="result">
+            <ul id="double">
+                <li>Total User online: <strong>{{userCount}}</strong></li>
+                <li>Android: <strong>{{androidCCU}}</strong></li>
+                <li>IOS: <strong>{{iosCCU}}</strong></li>
+                <li>J2ME: <strong>{{j2meCCU}}</strong></li>
+                <li>WinPhone: <strong>{{winPhoneCCU}}</strong></li>
+                <li>Web: <strong>{{webCCU}}</strong></li>
+            </ul>
+        </div>
+        <!--<div class="col-lg-12">-->
+        <!--sdfa-->
+        <!--<canvas id="pie" class="chart chart-pie" data="ccuData" labels="ccuLabels"></canvas>-->
+        <!--</div>-->
         <hr/>
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th> No. </th>
@@ -37,11 +98,10 @@
                 <th><a href="" ng-click="predicate = 'client_type'; reverse=!reverse"> Platform </a></th>
                 <th><a href="" ng-click="predicate = 'registeredtime'; reverse=!reverse"> RegisteredTime</a> </th>
                 <th><a href="" ng-click="predicate = 'loginedFrom'; reverse=!reverse"> Time activated</a> </th>
-                <!--<th>Action</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="user in users | filter:q |orderBy:predicate:reverse | itemsPerPage: pageSize track by $index" current-page="currentPage">
+            <tr ng-class="{info : $index%2===0}" dir-paginate="user in users | filter:q |orderBy:predicate:reverse | itemsPerPage: pageSize track by $index" current-page="currentPage">
                 <td> {{$index+1}}</td>
                 <td> {{user.USER_NAME}}</td>
                 <td> {{user.client_type }}</td>
@@ -49,9 +109,85 @@
                 <!--<td> {{user.last_login_time | date : "M/d/yy h:mm:s"}}</td>-->
                 <td> {{user.registeredtime}} days ago </td>
                 <td> {{user.loginedFrom}}  minutes before</td>
-                <td>
-                    <!--<a class="btn btn-success" href="#/users/{{user.ID}}/send"><i class="glyphicon glyphicon-envelope"></i></a>-->
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="scripts/directives/dirPagination.tpl.html"></dir-pagination-controls>
                 </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Feedback</strong>
+    </div>
+    <div class="panel-body">
+        <div class="time-filter">
+            <form ng-submit="getFeedbackByTime()" class="form-inline">
+                <div class="form-group">
+                    <p class="input-group">
+                        <input type="text" id="feedbackFrom" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="feedbackFrom" is-open="opened3" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened3')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <p class="input-group">
+                        <input type="text" id="feedbackTo" class="form-control" datepicker-popup="{{format}}"
+                               ng-model="feedbackTo" is-open="opened4" min-date="minDate" max-date="'2015-06-22'"
+                               datepicker-options="dateOptions"  ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event,'opened4')"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Query"/>
+                </div>
+            </form>
+            <button type="button" class="btn btn-sm btn-info" ng-click="getFeedbackToday()">Today</button>
+            <button type="button" class="btn btn-sm btn-default" ng-click="getFeedbackThisMonth()">This Month</button>
+            <button type="button" class="btn btn-sm btn-danger" ng-click="getFeedbackThisYear()">This Year</button>
+        </div>
+        <div class="filter-container">
+            <div class="filter-left">
+                <label for="feedbackFilter">Filter by :</label>
+                <input type="search" id="feedbackFilter" ng-model="feedbackFilter" placeholder="Filter "/>
+            </div>
+            <div class="filter-right">
+                <select id="feedbackPageSize" ng-model="feedbackPageSize">
+                    <option ng-value="10" ng-selected="true" >10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                    <option ng-value="50">50</option>
+                    <option ng-value="100">100</option>
+                </select>
+                <label for="page">Per Page :</label>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Id.</th>
+                <th>Sent From</th>
+                <th>user_name</th>
+                <th>content</th>
+                <th>Platform</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-class="{info : $index%2===0}" dir-paginate="row in feedbacks | filter:feedbackFilter | itemsPerPage: feedbackPageSize track by $index" current-page="currentFeebackPage">
+                <td>{{row.id}}</td>
+                <td>{{row.created_date | date : "yyyy/MM/dd/ HH:mm:ss"}}</td>
+                <td>{{row.user_name}}</td>
+                <td>{{row.content}}</td>
+                <td>{{row.xclient_type}}</td>
             </tr>
             </tbody>
             <tfoot>
